@@ -1,0 +1,1721 @@
+<!doctype html> 
+<html lang="pt-BR"> 
+<head> 
+<meta charset="utf-8"/> 
+<meta name="viewport" content="width=device-width,initial-scale=1"/> 
+<title>Aylanic Tutorials — by Ayla 💜</title> 
+<link rel="icon" href="data:,"> 
+<style> 
+  /* ---------- Theme & Layout ---------- */ 
+  :root{ 
+    --bg1: #4a0081; /* Roxo escuro para o topo */ 
+    --bg2: #2d0050; /* Roxo mais escuro para a base */ 
+    --card-bg: rgba(255,255,255,0.95); /* Cartões mais opacos */ 
+    --panel-dark: rgba(29,8,51,0.88); 
+    --accent: #e0baff; /* Lilás claro para acentuação */ 
+    --accent2: #f0ccff; /* Lilás mais claro para acentuação secundária */ 
+    --pink: #ff85c0; /* Rosa vibrante */ 
+    --text-dark: #2a004a; /* Texto escuro para contraste */ 
+    --text-light: #f3e8ff; /* Texto claro para o fundo roxo */ 
+    --white: #fff; 
+    --maxw:1200px; /* Largura máxima para desktop */ 
+  } 
+  *{box-sizing:border-box} 
+  html,body{height:100%;margin:0;font-family:'Poppins', Inter, system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--text-dark);-webkit-font-smoothing:antialiased} 
+   
+  /* Container principal com padding responsivo */ 
+  .wrap{max-width:var(--maxw);margin:24px auto;padding:18px;width:100%;max-width:100%;box-sizing:border-box} 
+   
+  /* Header responsivo */ 
+  header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 0} 
+  .logo{width:68px;height:68px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:var(--white);font-weight:900;font-size:26px;box-shadow:0 10px 30px rgba(224,186,255,0.3);animation:logoFloat 3s ease-in-out infinite} 
+  @keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}} 
+  h1{margin:0;font-size:1.5rem;color:var(--accent)} 
+  .subtitle{margin:4px 0 0 0;color:var(--accent2);font-weight:600} 
+   
+  /* Grid responsivo */ 
+  .grid{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:18px} 
+   
+  /* Cards com padding responsivo */ 
+  .card{background:var(--card-bg);border-radius:16px;padding:18px;box-shadow:0 12px 40px rgba(0,0,0,0.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.25)} 
+  .section-title{display:inline-block;padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--white);font-weight:800;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,0.1)} 
+  .small{font-size:0.95rem;color:var(--text-dark)} 
+   
+  /* Decor com z-index correto */ 
+  .decor { 
+    position: fixed; left: 0; top: 0; pointer-events: none; width:100%; height:100%; z-index:0; 
+    background:  
+      radial-gradient(circle at 15% 25%, rgba(255,255,255,0.6) 1px, transparent 1px), 
+      radial-gradient(circle at 85% 15%, rgba(255,190,220,0.5) 2px, transparent 2px), 
+      radial-gradient(circle at 45% 80%, rgba(224,186,255,0.45) 1px, transparent 1px), 
+      radial-gradient(ellipse 200px 80px at 20% 70%, rgba(255,255,255,0.25) 0%, transparent 50%), 
+      radial-gradient(ellipse 180px 60px at 80% 60%, rgba(255,255,255,0.2) 0%, transparent 50%), 
+      radial-gradient(circle at 30% 40%, rgba(255,190,220,0.2) 0 3%, transparent 3%), 
+      radial-gradient(circle at 70% 85%, rgba(224,186,255,0.15) 0 2%, transparent 2%); 
+    animation: decorFloat 20s ease-in-out infinite; 
+  } 
+  @keyframes decorFloat { 
+    0%, 100% { transform: translateY(0) rotate(0deg); } 
+    33% { transform: translateY(-10px) rotate(1deg); } 
+    66% { transform: translateY(5px) rotate(-1deg); } 
+  } 
+ 
+  /* GIF demo area responsiva */ 
+  .gif-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center} 
+  .gif-card{width:260px;border-radius:16px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.95));position:relative;box-shadow:0 10px 35px rgba(0,0,0,0.1);transition:transform 0.2s ease;margin-bottom:12px} 
+  .gif-card:hover{transform:translateY(-4px)} 
+  .word-gif { width:100%; height:160px; display:flex; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(248,250,255,0.8), rgba(255,255,255,0.7)); border-radius:16px 16px 0 0; } 
+  .word-gif span { font-size:42px; font-weight:900; color:var(--accent); -webkit-text-stroke: 0.8px rgba(255,255,255,0.2); text-shadow: 0 8px 25px rgba(224,186,255,0.1); animation: wordPulse 2.5s ease-in-out infinite; display:inline-block; } 
+  @keyframes wordPulse { 0% { transform: scale(0.95); opacity:0.9 } 50% { transform: scale(1.1); opacity:1 } 100% { transform: scale(0.95); opacity:0.9 } } 
+ 
+  /* Botões responsivos */ 
+  .btn {background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--text-dark);padding:10px 16px;border-radius:12px;border:none;cursor:pointer;font-weight:800;transition:all 0.2s ease;min-width:120px;display:inline-block;text-decoration:none;text-align:center} 
+  .btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(224,186,255,0.3)} 
+  .btn.ghost{background:transparent;border:2px solid rgba(224,186,255,0.2);color:var(--accent)} 
+  .btn.ghost:hover{background:rgba(224,186,255,0.1);border-color:var(--accent)} 
+ 
+  /* Demo area responsiva */ 
+  .demo-area{display:flex;flex-direction:column;gap:12px;align-items:center;padding:16px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));box-shadow:0 8px 30px rgba(0,0,0,0.1)} 
+  .preview-text{padding:14px 20px;border-radius:14px;font-weight:800;font-size:26px;color:var(--white); background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 18px 45px rgba(224,186,255,0.25);transition:all 0.3s ease} 
+  .preview-text:hover{transform:scale(1.02)} 
+ 
+  /* Paletas responsivas */ 
+  .palettes{display:flex;flex-direction:column;gap:14px;margin-top:14px} 
+  .palette-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap} 
+  .swatch{width:60px;height:60px;border-radius:12px;cursor:pointer;border:2px solid rgba(0,0,0,0.05);box-shadow:0 8px 20px rgba(0,0,0,0.08);transition:transform 0.2s ease} 
+  .swatch:hover{transform:scale(1.05) rotate(5deg)} 
+  .pal-meta{font-size:0.9rem;color:var(--text-dark);font-weight:600;margin-left:8px} 
+ 
+  /* Custom Color Picker responsivo */ 
+  .custom-color-picker { 
+    display: flex; 
+    gap: 10px; 
+    align-items: center; 
+    margin-top: 15px; 
+    padding: 10px; 
+    border-radius: 12px; 
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96)); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    flex-wrap: wrap; 
+  } 
+  .custom-color-picker input[type="color"] { 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none; 
+    border: none; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    background: transparent; 
+    border: 2px solid var(--accent); 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+  } 
+  .custom-color-picker input[type="color"]::-webkit-color-swatch-wrapper { 
+    padding: 0; 
+  } 
+  .custom-color-picker input[type="color"]::-webkit-color-swatch { 
+    border: none; 
+    border-radius: 6px; 
+  } 
+  .custom-color-picker input[type="color"]::-moz-color-swatch-wrapper { 
+    padding: 0; 
+  } 
+  .custom-color-picker input[type="color"]::-moz-color-swatch { 
+    border: none; 
+    border-radius: 6px; 
+  } 
+  .custom-color-picker button { 
+    padding: 8px 12px; 
+    font-size: 0.9rem; 
+    min-width: 80px; 
+    margin: 2px; 
+  } 
+ 
+  /* Fontes responsivas */ 
+  .fonts{display:flex;flex-direction:column;gap:10px} 
+  .font-row{display:flex;align-items:center;justify-content:space-between;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));box-shadow:0 8px 25px rgba(0,0,0,0.05);transition:transform 0.2s ease;flex-wrap:wrap;gap:10px} 
+  .font-row:hover{transform:translateX(4px)} 
+  .font-name{font-weight:800;color:var(--accent);font-size:1.1rem;flex:1} 
+ 
+  /* Efeitos responsivos */ 
+  .effects{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px} 
+  .effect-pill{padding:8px 12px;border-radius:20px;background:rgba(224,186,255,0.15);color:var(--accent);cursor:pointer;font-size:0.9rem;font-weight:600;border:1px solid rgba(224,186,255,0.25);transition:all 0.2s ease;white-space:nowrap;margin:2px} 
+  .effect-pill:hover{background:rgba(224,186,255,0.2);transform:scale(1.02)} 
+ 
+  /* Bio generator responsivo */ 
+  .bio-generator{margin-top:16px} 
+  .bio-tabs{display:flex;gap:8px;margin-bottom:12px;border-radius:12px;background:rgba(224,186,255,0.15);padding:4px;flex-wrap:wrap} 
+  .bio-tab-btn{padding:8px 16px;border-radius:10px;background:transparent;border:2px solid rgba(224,186,255,0.25);color:var(--accent);cursor:pointer;font-weight:600;transition:all 0.2s ease;flex:1;text-align:center;font-size:0.95rem;margin:2px} 
+  .bio-tab-btn.active{background:var(--accent);color:var(--text-dark)} 
+  .bio-tab-btn:hover{background:rgba(224,186,255,0.2)} 
+  .bio-output{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));border-radius:14px;padding:16px;box-shadow:0 10px 35px rgba(0,0,0,0.1);margin-top:12px;min-height:120px;position:relative} 
+  .bio-output textarea{width:100%;height:100px;border:none;background:transparent;color:var(--text-dark);font-family:inherit;font-size:1rem;padding:8px;resize:vertical;border-radius:8px;line-height:1.4} 
+  .bio-output-buttons{position:absolute;bottom:12px;right:12px;display:flex;gap:8px;flex-direction:column;align-items:flex-end} 
+  .bio-output button{padding:6px 12px;border-radius:8px;background:var(--accent);color:var(--white);border:none;cursor:pointer;font-size:0.9rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:transform 0.2s ease;min-width:80px;text-align:center} 
+  .bio-output button:hover{transform:translateY(-1px)} 
+  .bio-output button:first-child{margin-bottom:4px} 
+ 
+  /* Bio palavras responsivas */ 
+  .bio-palavras{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:14px;margin-top:20px} 
+  .bio-palavra{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));border-radius:14px;padding:14px;font-weight:800;color:var(--accent);cursor:pointer;box-shadow:0 10px 35px rgba(0,0,0,0.1);transition:all 0.2s ease;text-align:center;margin-bottom:8px} 
+  .bio-palavra:hover{transform:translateY(-3px);box-shadow:0 15px 45px rgba(0,0,0,0.15)} 
+ 
+  /* Votação responsiva */ 
+  .vote-list{display:flex;flex-direction:column;gap:12px;margin-top:10px} 
+  .vote-row{display:flex;align-items:center;gap:14px;padding:12px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));box-shadow:0 10px 35px rgba(0,0,0,0.08);transition:transform 0.2s ease;flex-wrap:wrap} 
+  .vote-row:hover{transform:translateX(4px)} 
+  .chan-label{font-weight:900;color:var(--accent);font-size:1.1rem;flex:1} 
+  .chan-sub{font-size:0.88rem;color:var(--text-dark);margin-top:4px} 
+  .vote-btn{background:linear-gradient(90deg,var(--pink),#ffb0d9);border:none;padding:10px 14px;border-radius:12px;cursor:pointer;color:var(--white);font-weight:900;box-shadow:0 8px 25px rgba(255,133,192,0.25);transition:all 0.2s ease;min-width:90px;margin:4px} 
+  .vote-btn:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(255,133,192,0.35)} 
+  .vote-btn:disabled{background:linear-gradient(90deg,#d1d5db,#e5e7eb);cursor:not-allowed;transform:none} 
+  .likes{font-weight:900;color:var(--pink);margin-left:auto;font-size:1.1rem} 
+ 
+  /* Ranking de votação responsivo */ 
+  .vote-ranking{margin-top:16px;padding:12px;border-radius:12px;background:linear-gradient(90deg,rgba(224,186,255,0.15),rgba(240,204,255,0.15));border-left:4px solid var(--accent)} 
+  .rank-podium{display:flex;justify-content:space-around;align-items:flex-end;margin:16px 0 8px 0;padding:12px;border-radius:14px;background:rgba(255,255,255,0.9);box-shadow:0 8px 30px rgba(0,0,0,0.1);border:1px solid rgba(255,255,255,0.3);flex-wrap:wrap} 
+  .rank-place{position:relative;text-align:center;flex:1;min-width:100px;margin:5px;padding:8px} 
+  .rank-place:nth-child(1) { height: 120px; display: flex; flex-direction: column; justify-content: flex-end; } 
+  .rank-place:nth-child(2) { height: 100px; display: flex; flex-direction: column; justify-content: flex-end; } 
+  .rank-place:nth-child(3) { height: 80px; display: flex; flex-direction: column; justify-content: flex-end; } 
+  .rank-medal{font-size:2.5rem;margin-bottom:4px;line-height:1} 
+  .rank-place:nth-child(1) .rank-medal { color: #FFD700; } /* Gold */ 
+  .rank-place:nth-child(2) .rank-medal { color: #C0C0C0; } /* Silver */ 
+  .rank-place:nth-child(3) .rank-medal { color: #CD7F32; } /* Bronze */ 
+  .rank-name{font-weight:800;color:var(--text-dark);margin-bottom:2px;font-size:0.95rem;word-break: break-word;} 
+  .rank-score{font-size:0.85rem;color:var(--text-dark);font-weight:600} 
+ 
+  /* Jogo dos corações responsivo */ 
+  .hearts-stage{width:100%;height:280px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96));position:relative;overflow:hidden;margin-top:12px;box-shadow:0 12px 40px rgba(0,0,0,0.1);border:2px solid rgba(255,255,255,0.3)} 
+  .heart{position:absolute;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 70% 30%, #fff, #ffb3c7);display:flex;align-items:center;justify-content:center;color:#ff85c0;font-weight:900;cursor:pointer;box-shadow:0 6px 15px rgba(255,133,192,0.35);transition:transform 0.2s ease, background 0.2s ease;border:1px solid rgba(255,255,255,0.7);font-size:1.5em;animation: heartPulse infinite 1.5s ease-in-out;} 
+  @keyframes heartPulse { 
+      0% { transform: scale(0.9); } 
+      50% { transform: scale(1.1); } 
+      100% { transform: scale(0.9); } 
+  } 
+  .heart:hover{transform:scale(1.25) rotate(10deg);box-shadow:0 10px 25px rgba(255,133,192,0.55)} 
+  .msg-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:40px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:var(--text-dark);padding:12px 20px;border-radius:14px;box-shadow:0 15px 40px rgba(0,0,0,0.2);font-weight:800;display:none;z-index:9999;min-width:280px;text-align:center;max-width:90vw} 
+  .ranking{margin-top:14px} 
+  .rank-row{display:flex;justify-content:space-between;padding:10px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(252,245,255,0.94));margin-bottom:8px;font-weight:800;box-shadow:0 4px 15px rgba(0,0,0,0.06);flex-wrap:wrap;gap:10px} 
+  .rank-row:hover{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96))} 
+  footer{margin-top:20px;color:var(--accent2);font-weight:800;text-align:center;padding:12px;border-top:1px solid rgba(224,186,255,0.15)} 
+ 
+  /* Estilos para tutoriais rápidos */ 
+  #quickSteps{margin-top:16px;padding:16px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,0.95),rgba(252,245,255,0.92));box-shadow:0 10px 35px rgba(0,0,0,0.08);border-left:4px solid var(--accent)} 
+  #quickSteps ol{margin:10px 0 0 20px;padding-left:0;color:var(--text-dark)} 
+  #quickSteps li{margin-bottom:6px;font-size:0.95rem;line-height:1.4} 
+ 
+  /* Media queries para responsividade */ 
+  @media (max-width:980px){ 
+    .grid{grid-template-columns:1fr;gap:16px} 
+    .gif-card{width:calc(50% - 6px);margin-bottom:12px} /* 50% menos metade da gap */ 
+    .swatch{width:50px;height:50px} 
+    .rank-podium{flex-direction:column;align-items:center} 
+    .rank-place{height:auto !important;margin-bottom:10px;padding:10px} 
+    .vote-row{flex-direction:column;text-align:center;gap:8px} 
+    .vote-btn{margin:4px auto !important} 
+    .likes{margin:0 auto !important} 
+    .font-row{flex-direction:column;text-align:center;gap:8px} 
+    .bio-palavra{min-width:100%;margin-bottom:8px} 
+  } 
+   
+  @media (max-width:620px){ 
+    .gif-card{width:100%} 
+    .wrap{padding:12px;margin:12px} 
+    .btn{padding:8px 12px;font-size:0.9rem;min-width:auto;margin:2px} 
+    .hearts-stage{height:200px} 
+    .msg-toast{bottom:20px;padding:10px 16px;min-width:250px;max-width:95vw} 
+    .bio-tab-btn{font-size:0.85rem;padding:6px 12px;margin:1px} 
+    .bio-output-buttons{position:static;display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap} 
+    .bio-output{padding:12px} 
+    .bio-output textarea{height:80px} 
+    .vote-row{padding:10px;gap:8px} 
+    .chan-label{font-size:1rem} 
+    .chan-sub{font-size:0.85rem} 
+    .vote-btn{padding:8px 12px;min-width:80px} 
+    .likes{font-size:1rem} 
+    .rank-podium{padding:8px} 
+    .rank-medal{font-size:2rem} 
+    .rank-name{font-size:0.9rem} 
+    .rank-score{font-size:0.8rem} 
+  } 
+   
+  @media (max-width:480px){ 
+    .wrap{padding:8px;margin:8px} 
+    .card{padding:14px} 
+    .section-title{padding:8px 12px;font-size:1.1rem} 
+    .gif-card{padding:8px} 
+    .word-gif{height:120px} 
+    .word-gif span{font-size:32px} 
+    .bio-palavra{padding:12px;font-size:0.95rem} 
+    .effect-pill{padding:6px 10px;font-size:0.85rem} 
+  } 
+</style> 
+</head> 
+<body> 
+  <div class="decor" aria-hidden="true"></div> 
+ 
+  <div class="wrap" style="position:relative;z-index:2"> 
+    <header> 
+      <div class="logo">A</div> 
+      <div> 
+        <h1>Aylanic Tutorials</h1> 
+        <div class="subtitle">♡ Tutoriais e inspirações de lyrics por Ayla ♡</div> 
+      </div> 
+    </header> 
+ 
+    <div class="grid" role="main"> 
+      <!-- LEFT MAIN --> 
+      <main> 
+        <!-- GIFs + tutorials --> 
+        <section class="card" id="tutorials"> 
+          <div class="section-title">🎞 Letras animadas — demos e tutoriais</div> 
+          <div class="small">GIFs demonstrativos (letras se movendo levemente). Clique em "Ver tutorial" para abrir o vídeo no YouTube.</div> 
+ 
+          <div class="gif-row" style="margin-top:14px"> 
+            <div class="gif-card" aria-label="CapCut demo"> 
+              <div class="word-gif" aria-hidden="true"><span>love</span></div> 
+              <div style="padding:12px 16px"> 
+                <div class="gif-title" style="font-weight:800;color:var(--accent);margin-bottom:6px">CapCut — esquerda</div> 
+                <div class="gif-caption" style="color:var(--text-dark);margin-bottom:10px;font-size:0.92rem">Letras se movendo levemente para a esquerda.</div> 
+                <div style="display:flex;gap:8px;flex-wrap:wrap"> 
+                  <button class="btn" data-yt="CapCut lyric text animation tutorial 2025">Ver tutorial (YouTube)</button> 
+                  <button class="btn ghost" data-quick="capcut">Ver passos rápidos</button> 
+                </div> 
+              </div> 
+            </div> 
+ 
+            <div class="gif-card" aria-label="Alight demo"> 
+              <div class="word-gif" aria-hidden="true"><span>lyric</span></div> 
+              <div style="padding:12px 16px"> 
+                <div class="gif-title" style="font-weight:800;color:var(--accent);margin-bottom:6px">Alight Motion — direita</div> 
+                <div class="gif-caption" style="color:var(--text-dark);margin-bottom:10px;font-size:0.92rem">Letras flutuando pro lado direito com suavidade.</div> 
+                <div style="display:flex;gap:8px;flex-wrap:wrap"> 
+                  <button class="btn" data-yt="Alight Motion lyric text animation tutorial 2025">Ver tutorial (YouTube)</button> 
+                  <button class="btn ghost" data-quick="alight">Ver passos rápidos</button> 
+                </div> 
+              </div> 
+            </div> 
+ 
+            <div class="gif-card" aria-label="Blurrr demo"> 
+              <div class="word-gif" aria-hidden="true"><span>edit</span></div> 
+              <div style="padding:12px 16px"> 
+                <div class="gif-title" style="font-weight:800;color:var(--accent);margin-bottom:6px">Blurrr — drift suave</div> 
+                <div class="gif-caption" style="color:var(--text-dark);margin-bottom:10px;font-size:0.92rem">Efeito drift com glow cinematográfico.</div> 
+                <div style="display:flex;gap:8px;flex-wrap:wrap"> 
+                  <button class="btn" data-yt="Blurrr lyric edit tutorial animation 2025">Ver tutorial (YouTube)</button> 
+                  <button class="btn ghost" data-quick="blurrr">Ver passos rápidos</button> 
+                </div> 
+              </div> 
+            </div> 
+          </div> 
+ 
+          <div id="quickSteps" style="margin-top:16px;display:none"></div> 
+        </section> 
+ 
+        <!-- Palettes --> 
+        <section class="card" style="margin-top:18px" id="palettes"> 
+          <div class="section-title">🎨 Paletas de cores — teste ao vivo</div> 
+          <div class="small">Clique numa cor para aplicar no preview instantaneamente. Use os botões para copiar as paletas completas!</div> 
+ 
+          <div class="demo-area" style="margin-top:12px"> 
+            <div id="previewText" class="preview-text">✨ dreaming in lyrics... ✨</div> 
+            <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center"> 
+              <button class="btn" id="resetPreviewBtn">🔄 Resetar</button> 
+              <button class="btn ghost" id="copyPreviewBtn">📋 Copiar estilo CSS</button> 
+            </div> 
+          </div> 
+ 
+          <div class="palettes"> 
+            <div class="palette-row"> 
+              <div class="swatch" style="background:#5f20a0" data-col='["#5f20a0","#e0baff","#ffffff"]' title="#5f20a0 - Roxo profundo"></div> 
+              <div class="swatch" style="background:#8b5cf6" data-col='["#8b5cf6","#e0baff","#ffffff"]' title="#8b5cf6 - Violeta"></div> 
+              <div class="swatch" style="background:#e0baff" data-col='["#e0baff","#5f20a0","#2a004a"]' title="#e0baff - Lilás claro"></div> 
+              <div class="pal-meta">🌸 Paleta Roxo Mágico — <button class="btn ghost" data-copy-pal='["#5f20a0","#8b5cf6","#e0baff","#ffffff"]'>📋 Copiar</button></div> 
+            </div> 
+ 
+            <div class="palette-row"> 
+              <div class="swatch" style="background:#1e40af" data-col='["#1e40af","#60a5fa","#ffffff"]' title="#1e40af - Azul marinho"></div> 
+              <div class="swatch" style="background:#3b82f6" data-col='["#3b82f6","#60a5fa","#ffffff"]' title="#3b82f6 - Azul principal"></div> 
+              <div class="swatch" style="background:#60a5fa" data-col='["#60a5fa","#1e40af","#2a004a"]' title="#60a5fa - Azul claro"></div> 
+              <div class="pal-meta">💙 Paleta Azul Celestial — <button class="btn ghost" data-copy-pal='["#1e40af","#3b82f6","#60a5fa","#ffffff"]'>📋 Copiar</button></div> 
+            </div> 
+ 
+            <div class="palette-row"> 
+              <div class="swatch" style="background:#be185d" data-col='["#be185d","#f472b6","#ffffff"]' title="#be185d - Rosa escuro"></div> 
+              <div class="swatch" style="background:#ec4899" data-col='["#ec4899","#f472b6","#ffffff"]' title="#ec4899 - Rosa vibrante"></div> 
+              <div class="swatch" style="background:#f472b6" data-col='["#f472b6","#be185d","#2a004a"]' title="#f472b6 - Rosa suave"></div> 
+              <div class="pal-meta">💖 Paleta Rosa Romântico — <button class="btn ghost" data-copy-pal='["#be185d","#ec4899","#f472b6","#ffffff"]'>📋 Copiar</button></div> 
+            </div> 
+ 
+            <div class="palette-row"> 
+              <div class="swatch" style="background:linear-gradient(90deg,#e0baff,#ff85c0)" data-grad='["#e0baff","#ff85c0"]' title="Gradiente Lilás-Rosa"></div> 
+              <div class="swatch" style="background:linear-gradient(90deg,#60a5fa,#f59e0b)" data-grad='["#60a5fa","#f59e0b"]' title="Gradiente Azul-Dourado"></div> 
+              <div class="swatch" style="background:linear-gradient(90deg,#34d399,#f59e0b)" data-grad='["#34d399","#f59e0b"]' title="Gradiente Verde-Dourado"></div> 
+              <div class="pal-meta">🎨 Gradientes Mágicos — clique nas amostras para aplicar!</div> 
+            </div> 
+          </div> 
+          <div class="custom-color-picker"> 
+            <input type="color" id="customColor1" value="#e0baff"> 
+            <input type="color" id="customColor2" value="#ff85c0"> 
+            <button class="btn" id="applyCustomColors">Aplicar Cores Personalizadas</button> 
+            <button class="btn ghost" id="copyCustomColors">Copiar Hex</button> 
+          </div> 
+        </section> 
+ 
+        <!-- Fonts & effects --> 
+        <section class="card" style="margin-top:18px" id="fonts"> 
+          <div class="section-title">🩷 Fontes Premium & Efeitos Decorativos</div> 
+          <div class="small">Copie os nomes das fontes para buscar no DaFont, Google Fonts ou Creative Market. Os efeitos são perfeitos para bios e legendas!</div> 
+ 
+          <div class="fonts" style="margin-top:12px"> 
+            <div class="font-row"><div class="font-name">akira_expanded</div><button class="btn ghost" data-copy="akira expanded" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">brigends_expanded</div><button class="btn ghost" data-copy="brigends expanded" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">magic_retro</div><button class="btn ghost" data-copy="magic retro" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">cocogoose_classic</div><button class="btn ghost" data-copy="cocogoose classic" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">quiska</div><button class="btn ghost" data-copy="quiska" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">junigarden_swash</div><button class="btn ghost" data-copy="junigarden swash" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">midnight_gelactic</div><button class="btn ghost" data-copy="midnight galactic" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">shine_typewriter</div><button class="btn ghost" data-copy="shine typewriter" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">The Moonlight</div><button class="btn ghost" data-copy="The Moonlight" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Freshman</div><button class="btn ghost" data-copy="Freshman" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Beauty and the Beast</div><button class="btn ghost" data-copy="Beauty and the Beast" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Blacklisted</div><button class="btn ghost" data-copy="Blacklisted" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Bebas Neue</div><button class="btn ghost" data-copy="Bebas Neue" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Montserrat</div><button class="btn ghost" data-copy="Montserrat" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Playlist Script</div><button class="btn ghost" data-copy="Playlist Script" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Lemon Milk</div><button class="btn ghost" data-copy="Lemon Milk" title="Copiar nome da fonte">📋 Copiar</button></div> 
+            <div class="font-row"><div class="font-name">Dream Avenue</div><button class="btn ghost" data-copy="Dream Avenue" title="Copiar nome da fonte">📋 Copiar</button></div> 
+          </div> 
+ 
+          <div style="margin-top:16px"> 
+            <p class="small" style="margin-bottom:10px;font-weight:600">✨ Efeitos decorativos para bio e legendas (clique para copiar):</p> 
+            <div class="effects"> 
+              <div class="effect-pill" data-copy="˖ ݁♬⋆.˚𝄞. ──★">˖ ݁♬⋆.˚𝄞. ──★</div> 
+              <div class="effect-pill" data-copy="˙🧷 ̟ !!">˙🧷 ̟ !!</div> 
+              <div class="effect-pill" data-copy="✧ dreaming in lyrics...">✧ dreaming in lyrics...</div> 
+              <div class="effect-pill" data-copy="𝑏𝑎𝑏𝑦 𝑖𝑡's 𝑎𝑙𝑙 𝑖𝑛 𝑚𝑦 𝑚𝑖𝑛𝑑 .✧">𝑏𝑎𝑏𝑦 𝑖𝑡's all in my mind .✧</div> 
+              <div class="effect-pill" data-copy="– edits with feelings ♡">– edits with feelings ♡</div> 
+              <div class="effect-pill" data-copy="🌸 aylanics forever ✨">🌸 aylanics forever ✨</div> 
+              <div class="effect-pill" data-copy="💜 lyrics & magic 💜">💜 lyrics & magic 💜</div> 
+              <!-- Novos símbolos da foto --> 
+              <div class="effect-pill" data-copy="✦ 𖤐 ࣪ ִֶָ 𖥔 ̇‧ ₊ ˖">✦ 𖤐 ࣪ ִֶָ 𖥔 ̇‧ ₊ ˖</div> 
+              <div class="effect-pill" data-copy=" ❀۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪ ❀۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪ ❀"> ❀۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪ ❀۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪۪ ❀</div> 
+              <div class="effect-pill" data-copy="✿ 𓆩 ♡ 𓆪 ✿">✿ 𓆩 ♡ 𓆪 ✿</div> 
+              <div class="effect-pill" data-copy="◡̈  ♡  ◡̈">◡̈  ♡  ◡̈</div> 
+              <div class="effect-pill" data-copy=" ༘⋆ 🌷 𓍯⟡  ♡  𓍯⟡ 🌷⋆༘"> ༘⋆ 🌷 𓍯⟡  ♡  𓍯⟡ 🌷⋆༘</div> 
+              <div class="effect-pill" data-copy="૮₍ ´• ˕ •` ₎ა">૮₍ ´• ˕ •` ₎ა</div> 
+              <div class="effect-pill" data-copy="✩ ༘*. ">✩ ༘*. </div> 
+              <div class="effect-pill" data-copy="·˚ ༘  ꒰ ꒱ ">·˚ ༘  ꒰ ꒱ </div> 
+              <div class="effect-pill" data-copy="𓆩❤︎𓆪">𓆩❤︎𓆪</div> 
+              <div class="effect-pill" data-copy="୨୧">୨୧</div> 
+              <div class="effect-pill" data-copy="✦">✦</div> 
+              <div class="effect-pill" data-copy="𖤐">𖤐</div> 
+              <div class="effect-pill" data-copy="˚˖𓍢ִ໋🌷͙֒">˚˖𓍢ִ໋🌷͙֒</div> 
+              <div class="effect-pill" data-copy="♡">♡</div> 
+              <div class="effect-pill" data-copy="𓆩♡𓆪">𓆩♡𓆪</div> 
+              <div class="effect-pill" data-copy="🌸">🌸</div> 
+              <div class="effect-pill" data-copy="🎀">🎀</div> 
+              <div class="effect-pill" data-copy="🌷">🌷</div> 
+              <div class="effect-pill" data-copy="⭐">⭐</div> 
+              <div class="effect-pill" data-copy="🌙">🌙</div> 
+              <div class="effect-pill" data-copy="💫">💫</div> 
+              <div class="effect-pill" data-copy="✨">✨</div> 
+              <div class="effect-pill" data-copy="🔮">🔮</div> 
+              <div class="effect-pill" data-copy="🕊️">🕊️</div> 
+              <div class="effect-pill" data-copy="🦋">🦋</div> 
+              <div class="effect-pill" data-copy="🍓">🍓</div> 
+              <div class="effect-pill" data-copy="🧸">🧸</div> 
+              <div class="effect-pill" data-copy="🫧">🫧</div> 
+              <div class="effect-pill" data-copy="🎧">🎧</div> 
+              <div class="effect-pill" data-copy="🎶">🎶</div> 
+              <div class="effect-pill" data-copy="🎵">🎵</div> 
+              <div class="effect-pill" data-copy="☁️">☁️</div> 
+              <div class="effect-pill" data-copy="🌈">🌈</div> 
+              <div class="effect-pill" data-copy="💐">💐</div> 
+              <div class="effect-pill" data-copy="🌿">🌿</div> 
+              <div class="effect-pill" data-copy="💖">💖</div> 
+              <div class="effect-pill" data-copy="💕">💕</div> 
+              <div class="effect-pill" data-copy="💜">💜</div> 
+              <div class="effect-pill" data-copy="💙">💙</div> 
+              <div class="effect-pill" data-copy="💚">💚</div> 
+              <div class="effect-pill" data-copy="💛">💛</div> 
+              <div class="effect-pill" data-copy="🧡">🧡</div> 
+              <div class="effect-pill" data-copy="❤">❤</div> 
+              <div class="effect-pill" data-copy="🤍">🤍</div> 
+              <div class="effect-pill" data-copy="🤎">🤎</div> 
+              <div class="effect-pill" data-copy="🖤">🖤</div> 
+              <div class="effect-pill" data-copy="💯">💯</div> 
+              <div class="effect-pill" data-copy="✅">✅</div> 
+              <div class="effect-pill" data-copy="☑️">☑️</div> 
+              <div class="effect-pill" data-copy="✔️">✔️</div> 
+              <div class="effect-pill" data-copy="✨">✨</div> 
+              <div class="effect-pill" data-copy="💫">💫</div> 
+              <div class="effect-pill" data-copy="🌟">🌟</div> 
+              <div class="effect-pill" data-copy="🌠">🌠</div> 
+              <div class="effect-pill" data-copy="🌈">🌈</div> 
+              <div class="effect-pill" data-copy="🦄">🦄</div> 
+              <div class="effect-pill" data-copy="🦋">🦋</div> 
+              <div class="effect-pill" data-copy="🐞">🐞</div> 
+              <div class="effect-pill" data-copy="🐝">🐝</div> 
+              <div class="effect-pill" data-copy="🌸">🌸</div> 
+              <div class="effect-pill" data-copy="🌺">🌺</div> 
+              <div class="effect-pill" data-copy="🌹">🌹</div> 
+              <div class="effect-pill" data-copy="🌼">🌼</div> 
+              <div class="effect-pill" data-copy="🌻">🌻</div> 
+              <div class="effect-pill" data-copy="🌷">🌷</div> 
+              <div class="effect-pill" data-copy="🌿">🌿</div> 
+              <div class="effect-pill" data-copy="🌱">🌱</div> 
+              <div class="effect-pill" data-copy="🍀">🍀</div> 
+              <div class="effect-pill" data-copy="🐾">🐾</div> 
+              <div class="effect-pill" data-copy="🐶">🐶</div> 
+              <div class="effect-pill" data-copy="🐱">🐱</div> 
+              <div class="effect-pill" data-copy="🐰">🐰</div> 
+              <div class="effect-pill" data-copy="🐼">🐼</div> 
+              <div class="effect-pill" data-copy="🐻">🐻</div> 
+              <div class="effect-pill" data-copy="🐥">🐥</div> 
+              <div class="effect-pill" data-copy="🐧">🐧</div> 
+              <div class="effect-pill" data-copy="🧚">🧚</div> 
+              <div class="effect-pill" data-copy="🧜">🧜</div> 
+              <div class="effect-pill" data-copy="👑">👑</div> 
+              <div class="effect-pill" data-copy="💎">💎</div> 
+            </div> 
+          </div> 
+        </section> 
+ 
+        <!-- Bio words & Generator --> 
+        <section class="card" style="margin-top:18px" id="bio"> 
+          <div class="section-title">💌 Bios Fofas & Gerador de Frases</div> 
+          <div class="small">Copie as bios prontas ou gere uma personalizada! Perfeitas para TikTok, Instagram e WhatsApp.</div> 
+ 
+          <div class="bio-generator"> 
+            <div class="bio-tabs"> 
+              <button class="bio-tab-btn active" data-bio-type="feminino">🌸 Bio Feminina</button> 
+              <button class="bio-tab-btn" data-bio-type="masculino">💙 Bio Masculina</button> 
+            </div> 
+            <div class="bio-output"> 
+              <textarea id="generatedBio" readonly placeholder="Clique em 'Gerar Bio' para criar uma frase fofa!">Clique em "Gerar Bio" para uma frase fofa!</textarea> 
+              <div class="bio-output-buttons"> 
+                <button class="btn" id="generateBioBtn">✨ Gerar Bio</button> 
+                <button class="btn ghost" id="copyGeneratedBioBtn">📋 Copiar</button> 
+              </div> 
+            </div> 
+          </div> 
+ 
+          <div class="bio-palavras" style="margin-top:20px"> 
+            <div class="bio-palavra" data-copy="♡ 𝐿𝑢𝑧 𝑒 𝑚𝑢́𝑠𝑖𝑐𝑎 ♡">♡ Luz e música ♡</div> 
+            <div class="bio-palavra" data-copy="★彡 𝓈𝑜𝓃𝒽𝑜𝓈 彡★">★彡 Sonhos 彡★</div> 
+            <div class="bio-palavra" data-copy="⋆｡°✩ 𝒶𝓎𝓁𝒶𝓃𝒾𝒸 ˚˖°⋆">⋆ Aylanics ˚⋆</div> 
+            <div class="bio-palavra" data-copy="꒰ঌ 💜 𝑓𝑜𝑓𝑖𝑛ℎ𝑎 𝑒 𝑎𝑒𝑠𝑡𝒉𝑒𝓉𝒾𝒸 💜 ໒꒱">💜 Fofinha aesthetic 💜</div> 
+            <div class="bio-palavra" data-copy="✧･ﾟ: *:･ﾟ✧ 𝑑𝑟𝑒𝑎𝑚 𝑣𝑖𝑏𝑒 ✧･ﾟ: *:･ﾟ✧">✧ Dream vibe ✧</div> 
+            <div class="bio-palavra" data-copy="𓂃𓈒𓏸♡ melodies in my soul ♫">♡ Melodies in my soul ♫</div> 
+            <div class="bio-palavra" data-copy="🌸 editing dreams into reality ✨">🌸 Editing dreams ✨</div> 
+            <div class="bio-palavra" data-copy="💫 lyrics lover forever 💫">💫 Lyrics lover 💫</div> 
+          </div> 
+        </section> 
+      </main> 
+ 
+      <!-- RIGHT ASIDE --> 
+      <aside> 
+        <!-- Voting --> 
+        <div class="card" id="voting"> 
+          <div class="section-title">💜 Votação — Melhores Canais de Lyrics</div> 
+          <div class="small">Vote nos seus criadores de lyrics favoritos! Seu voto é único por canal (no seu navegador).</div> 
+ 
+          <div class="vote-list" id="voteList"></div> 
+           
+          <div class="vote-ranking"> 
+            <div style="font-weight:900;text-align:center;color:var(--text-dark);font-size:1.1rem;margin-bottom:8px">🏆 Pódio de Votação</div> 
+            <div class="rank-podium" id="votePodium"> 
+              <!-- Pódio será gerado aqui --> 
+            </div> 
+            <div style="margin-top:12px;padding:10px;border-radius:10px;background:rgba(224,186,255,0.15);border-left:3px solid var(--accent)"> 
+              <div class="small" style="color:var(--text-dark);font-weight:600">💡 Dica: Limpe o cache do navegador para votar novamente!</div> 
+            </div> 
+          </div> 
+        </div> 
+ 
+        <!-- Hearts mini-game --> 
+        <div class="card" style="margin-top:18px"> 
+          <div class="section-title">🎮 Jogo dos Corações Mágicos</div> 
+          <div class="small">Clique em "Iniciar jogo" e pegue todos os corações que caem! O jogo dura 25 segundos e sua melhor pontuação fica salva no navegador. Divirta-se! 💖</div> 
+ 
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;justify-content:center"> 
+            <button class="btn" id="startHeartsBtn">▶️ Iniciar jogo</button> 
+            <button class="btn ghost" id="stopHeartsBtn" disabled>⏹️ Parar jogo</button> 
+            <button class="btn ghost" id="playAgainBtn">🔄 Jogar de novo</button> 
+          </div> 
+ 
+          <div id="heartsStage" class="hearts-stage" style="display:none"></div> 
+          <div style="margin-top:12px;text-align:center;color:var(--text-dark);font-weight:800;font-size:1.1rem"> 
+            Pontos atuais: <span id="heartsScore" style="color:var(--pink);font-size:1.3rem">0</span> 
+          </div> 
+          <div id="heartsMessage" class="small" style="margin-top:8px;color:var(--accent2);text-align:center;font-weight:600"></div> 
+ 
+          <div class="ranking"> 
+            <div style="font-weight:900;margin-top:14px;color:var(--text-dark);text-align:center">🏆 Seu Ranking Pessoal</div> 
+            <div id="rankingList" style="margin-top:10px;max-height:200px;overflow-y:auto"></div> 
+            <div class="small" style="margin-top:12px;color:var(--text-dark);text-align:center"> 
+              ✨ Todos os recordes são salvos localmente no seu navegador. Para ranking global seria necessário um servidor! 
+            </div> 
+          </div> 
+        </div> 
+ 
+        <!-- Apps --> 
+        <div class="card" style="margin-top:18px"> 
+          <div class="section-title">📱 Apps Oficiais para Edição</div> 
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px"> 
+            <a class="btn" href="https://www.capcut.com/" target="_blank" rel="noopener">🎬 CapCut — Editor oficial</a> 
+            <a class="btn" href="https://alightcreative.com/alight-motion/" target="_blank" rel="noopener">✨ Alight Motion — Animações</a> 
+            <a class="btn" href="https://blurrr.com/" target="_blank" rel="noopener">🎨 Blurrr — Efeitos pro</a> 
+            <a class="btn ghost" href="https://www.canva.com/" target="_blank" rel="noopener" style="justify-content:center">🖼️ Canva — Design rápido</a> 
+          </div> 
+          <div class="small" style="margin-top:12px;text-align:center;color:var(--text-dark)"> 
+            Todos os links são oficiais e seguros! 🚀 
+          </div> 
+        </div> 
+      </aside> 
+    </div> 
+ 
+    <footer>© 2025 Aylanic Tutorials — Feito com muito 💜 por Ayla | Todos os direitos reservados</footer> 
+  </div> 
+ 
+  <div id="toast" class="msg-toast"></div> 
+ 
+<script> 
+/* ------------------ Utilities melhoradas ------------------ */ 
+function showToast(msg, timeout=2500, type='success'){ 
+  const t = document.getElementById('toast'); 
+  t.textContent = msg; 
+  t.style.background = type === 'error' ? 'linear-gradient(90deg, #ef4444, #f87171)' : 'linear-gradient(90deg, var(--accent), var(--accent2))'; 
+  t.style.color = type === 'error' ? 'white' : 'var(--text-dark)'; 
+  t.style.display = 'block'; 
+  t.style.opacity = '0'; 
+  t.style.transform = 'translateX(-50%) translateY(20px)'; 
+   
+  // Animação de entrada 
+  t.animate([ 
+    { opacity: 0, transform: 'translateX(-50%) translateY(20px)' }, 
+    { opacity: 1, transform: 'translateX(-50%) translateY(0px)' } 
+  ], { duration: 300, easing: 'ease-out' }); 
+   
+  clearTimeout(t._hide); 
+  t._hide = setTimeout(()=>{ 
+    t.animate([ 
+      { opacity: 1, transform: 'translateX(-50%) translateY(0px)' }, 
+      { opacity: 0, transform: 'translateX(-50%) translateY(20px)' } 
+    ], { duration: 300, easing: 'ease-in' }).onfinish = () => t.style.display = 'none'; 
+  }, timeout); 
+} 
+ 
+function copyToClipboard(text, element = null) { 
+  if (!text) return showToast('Nada para copiar!', 2000, 'error'); 
+   
+  // Método moderno (Clipboard API) 
+  if (navigator.clipboard && window.isSecureContext) { 
+    navigator.clipboard.writeText(String(text)).then(() => { 
+      const displayText = String(text).length > 50 ? String(text).slice(0, 50) + '...' : String(text); 
+      showToast(`✅ Copiado: "${displayText}"`, 2200); 
+      if (element) { 
+        element.style.background = 'linear-gradient(90deg, #d4edda, #c3e6cb)'; 
+        setTimeout(() => { element.style.background = ''; }, 1000); 
+      } 
+    }).catch((err) => { 
+      console.warn('Clipboard API falhou, usando fallback:', err); 
+      fallbackCopyTextToClipboard(text, element); 
+    }); 
+  } else { 
+    // Fallback para navegadores antigos 
+    fallbackCopyTextToClipboard(text, element); 
+  } 
+} 
+ 
+function fallbackCopyTextToClipboard(text, element) { 
+  const textArea = document.createElement('textarea'); 
+  textArea.value = String(text); 
+  textArea.style.position = 'fixed'; 
+  textArea.style.left = '-999999px'; 
+  textArea.style.top = '-999999px'; 
+  document.body.appendChild(textArea); 
+  textArea.focus(); 
+  textArea.select(); 
+   
+  try { 
+    const successful = document.execCommand('copy'); 
+    if (successful) { 
+      const displayText = String(text).length > 50 ? String(text).slice(0, 50) + '...' : String(text); 
+      showToast(`✅ Copiado: "${displayText}"`, 2200); 
+      if (element) { 
+        element.style.background = 'linear-gradient(90deg, #d4edda, #c3e6cb)'; 
+        setTimeout(() => { element.style.background = ''; }, 1000); 
+      } 
+    } else { 
+      throw new Error('Falha no copy'); 
+    } 
+  } catch (err) { 
+    showToast('❌ Não foi possível copiar. Tente selecionar e Ctrl+C!', 3000, 'error'); 
+    console.error('Fallback copy falhou:', err); 
+  } finally { 
+    document.body.removeChild(textArea); 
+  } 
+} 
+ 
+/* ------------------ Handlers de eventos principais ------------------ */ 
+document.addEventListener('click', (e) => { 
+  // YouTube search 
+  const ytBtn = e.target.closest('[data-yt]'); 
+  if (ytBtn) { 
+    e.preventDefault(); 
+    const query = ytBtn.getAttribute('data-yt'); 
+    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`; 
+    window.open(url, '_blank', 'noopener,noreferrer'); 
+    showToast(`🔍 Abrindo YouTube: "${query}"`, 2000); 
+    return; 
+  } 
+ 
+  // Quick steps 
+  const quickBtn = e.target.closest('[data-quick]'); 
+  if (quickBtn) { 
+    e.preventDefault(); 
+    showQuickSteps(quickBtn.getAttribute('data-quick')); 
+    return; 
+  } 
+ 
+  // Copy text (fonts, effects, bio-palavras) 
+  const copyBtn = e.target.closest('[data-copy]'); 
+  if (copyBtn) { 
+    e.preventDefault(); 
+    const text = copyBtn.getAttribute('data-copy'); 
+    copyToClipboard(text, copyBtn); 
+    return; 
+  } 
+ 
+  // Copy palette 
+  const copyPalBtn = e.target.closest('[data-copy-pal]'); 
+  if (copyPalBtn) { 
+    e.preventDefault(); 
+    const palette = JSON.parse(copyPalBtn.getAttribute('data-copy-pal')); 
+    const formatted = `Paleta de cores:\n${palette.map(color => `  ${color}`).join('\n')}`; 
+    copyToClipboard(formatted, copyPalBtn); 
+    return; 
+  } 
+ 
+  // Bio words (click to copy) 
+  const bioWord = e.target.closest('.bio-palavra'); 
+  if (bioWord) { 
+    e.preventDefault(); 
+    const text = bioWord.getAttribute('data-copy'); 
+    copyToClipboard(text, bioWord); 
+    // Efeito visual 
+    bioWord.animate([ 
+      { transform: 'scale(1)', background: 'linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96))' }, 
+      { transform: 'scale(0.98)', background: 'linear-gradient(180deg, #d4edda, #c3e6cb)' }, 
+      { transform: 'scale(1)', background: 'linear-gradient(180deg, rgba(255,255,255,0.98), rgba(252,245,255,0.96))' } 
+    ], { duration: 300, easing: 'ease-in-out' }); 
+    return; 
+  } 
+ 
+  // Effect pills 
+  const effectPill = e.target.closest('.effect-pill'); 
+  if (effectPill) { 
+    e.preventDefault(); 
+    const text = effectPill.getAttribute('data-copy'); 
+    copyToClipboard(text, effectPill); 
+    effectPill.animate([ 
+      { transform: 'scale(1)', background: 'rgba(224,186,255,0.15)' }, 
+      { transform: 'scale(1.02)', background: 'linear-gradient(90deg, #d4edda, #c3e6cb)' }, 
+      { transform: 'scale(1)', background: 'rgba(224,186,255,0.15)' } 
+    ], { duration: 300, easing: 'ease-in-out' }); 
+    return; 
+  } 
+}); 
+ 
+function showQuickSteps(id) { 
+  const quickStepsEl = document.getElementById('quickSteps'); 
+  quickStepsEl.style.display = 'block'; 
+   
+  let html = ''; 
+  const commonStyle = 'padding:14px;border-radius:12px;background:linear-gradient(90deg,rgba(255,255,255,0.95),rgba(252,245,255,0.92));box-shadow:0 10px 35px rgba(0,0,0,0.08);margin-top:16px;border-left:4px solid var(--accent)'; 
+   
+  if (id === 'capcut') { 
+    html = `<div style="${commonStyle}"> 
+      <h4 style="color:var(--text-dark);margin:0 0 12px 0;font-size:1.2rem;font-weight:800">🎬 CapCut — Tutorial Rápido (Letras Esquerda)</h4> 
+      <ol style="margin:8px 0 0 20px;padding:0;color:var(--text-dark);font-size:0.95rem;line-height:1.5"> 
+        <li><strong>Camadas:</strong> Crie 2 camadas de texto - uma principal e uma base para glow</li> 
+        <li><strong>Animação principal:</strong> Keyframes Y: -8px → 0px → -8px | X: -6px → 0px → -6px (duração: 2s, loop)</li> 
+        <li><strong>Camada base (glow):</strong> Gaussian Blur: 4-8px, Opacidade: 35%, Blend Mode: Screen</li> 
+        <li><strong>Finalização:</strong> Exporte em 1080p/60fps. No TikTok, ative "Upload em alta qualidade"</li> 
+      </ol> 
+      <div style="margin-top:12px;padding:8px;border-radius:8px;background:rgba(224,186,255,0.15);font-size:0.9rem;color:var(--text-dark)"> 
+        💡 <strong>Dica Pro:</strong> Use easing "ease-in-out" para movimento mais natural! 
+      </div> 
+    </div>`; 
+  } else if (id === 'alight') { 
+    html = `<div style="${commonStyle}"> 
+      <h4 style="color:var(--text-dark);margin:0 0 12px 0;font-size:1.2rem;font-weight:800">✨ Alight Motion — Tutorial Rápido (Letras Direita)</h4> 
+      <ol style="margin:8px 0 0 20px;padding:0;color:var(--text-dark);font-size:0.95rem;line-height:1.5"> 
+        <li><strong>Configuração:</strong> Adicione texto e vá para "Animator" → Position</li> 
+        <li><strong>Movimento X:</strong> Anime de 0px → +12px → 0px (use Bezier easing para suavidade)</li> 
+        <li><strong>Efeitos extras:</strong> Adicione "Motion Blur" (20%) + "Drop Shadow" com blend "Screen"</li> 
+        <li><strong>Timing:</strong> Duração 1.8s, repita infinite com "Ease In Out"</li> 
+      </ol> 
+      <div style="margin-top:12px;padding:8px;border-radius:8px;background:rgba(224,186,255,0.15);font-size:0.9rem;color:var(--text-dark)"> 
+        💡 <strong>Dica Pro:</strong> Ajuste a velocidade no "Graph Editor" para movimento mais orgânico! 
+      </div> 
+    </div>`; 
+  } else if (id === 'blurrr') { 
+    html = `<div style="${commonStyle}"> 
+      <h4 style="color:var(--text-dark);margin:0 0 12px 0;font-size:1.2rem;font-weight:800">🎨 Blurrr — Tutorial Rápido (Drift + Glow)</h4> 
+      <ol style="margin:8px 0 0 20px;padding:0;color:var(--text-dark);font-size:0.95rem;line-height:1.5"> 
+        <li><strong>Camadas:</strong> Duplique seu texto - camada superior (nítida) + inferior (blur)</li> 
+        <li><strong>Blur base:</strong> Aplique "Directional Blur" (ângulo 45°, distância 6px) na camada inferior</li> 
+        <li><strong>Animação:</strong> Anime posição X/Y levemente (+3px/-3px) e opacidade (100%→80%→100%)</li> 
+        <li><strong>Final:</strong> Blend mode "Screen" na camada blur, ajuste saturação +15% para glow</li> 
+      </ol> 
+      <div style="margin-top:12px;padding:8px;border-radius:8px;background:rgba(224,186,255,0.15);font-size:0.9rem;color:var(--text-dark)"> 
+        💡 <strong>Dica Pro:</strong> Use keyframes curvos para movimento mais cinematográfico! 
+      </div> 
+    </div>`; 
+  } 
+   
+  quickStepsEl.innerHTML = html; 
+   
+  // Scroll suave para os passos 
+  setTimeout(() => { 
+    quickStepsEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+  }, 100); 
+   
+  showToast(`📖 Tutorial carregado: ${id.charAt(0).toUpperCase() + id.slice(1)}`, 2000); 
+} 
+ 
+/* ------------------ Paletas de cores ------------------ */ 
+document.addEventListener('DOMContentLoaded', function() { 
+  const resetBtn = document.getElementById('resetPreviewBtn'); 
+  const copyStyleBtn = document.getElementById('copyPreviewBtn'); 
+  const previewText = document.getElementById('previewText'); 
+  const customColor1Input = document.getElementById('customColor1'); 
+  const customColor2Input = document.getElementById('customColor2'); 
+  const applyCustomColorsBtn = document.getElementById('applyCustomColors'); 
+  const copyCustomColorsBtn = document.getElementById('copyCustomColors'); 
+   
+  // Reset preview 
+  resetBtn.addEventListener('click', function() { 
+    previewText.style.background = `linear-gradient(90deg, var(--accent), var(--accent2))`; 
+    previewText.style.color = '#ffffff'; 
+    previewText.style.boxShadow = `0 18px 45px rgba(224, 186, 255, 0.25)`; 
+    showToast('🔄 Preview resetado para o padrão Aylanics!', 1800); 
+  }); 
+   
+  // Copy style 
+  copyStyleBtn.addEventListener('click', function() { 
+    const bg = previewText.style.background || `linear-gradient(90deg, ${getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()}, ${getComputedStyle(document.documentElement).getPropertyValue('--accent2').trim()})`; 
+    const color = previewText.style.color || '#ffffff'; 
+    const shadow = previewText.style.boxShadow || `0 18px 45px ${hexToRgba(getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(), 0.25)}`; 
+    const cssCode = `.preview-text {\n  background: ${bg};\n  color: ${color};\n  box-shadow: ${shadow};\n}`; 
+    copyToClipboard(cssCode, copyStyleBtn); 
+  }); 
+   
+  // Swatches 
+  document.querySelectorAll('.swatch').forEach(swatch => { 
+    swatch.addEventListener('click', function() { 
+      const gradientData = this.getAttribute('data-grad'); 
+      const colorData = this.getAttribute('data-col'); 
+       
+      if (gradientData) { 
+        const colors = JSON.parse(gradientData); 
+        previewText.style.background = `linear-gradient(90deg, ${colors.join(', ')})`; 
+        previewText.style.color = '#ffffff'; 
+        previewText.style.boxShadow = `0 18px 45px ${hexToRgba(colors[0], 0.25)}`; 
+        showToast('🎨 Gradiente aplicado!', 1500); 
+      } else if (colorData) { 
+        const colors = JSON.parse(colorData); 
+        previewText.style.background = `linear-gradient(90deg, ${colors[0]}, ${colors[1] || colors[0]})`; 
+        previewText.style.color = colors[2] || '#ffffff'; 
+        previewText.style.boxShadow = `0 18px 45px ${hexToRgba(colors[0], 0.25)}`; 
+        showToast('🌈 Paleta aplicada!', 1500); 
+      } 
+       
+      // Animação do preview 
+      previewText.animate([ 
+        { transform: 'scale(1)', offset: 0 }, 
+        { transform: 'scale(1.05)', offset: 0.5 }, 
+        { transform: 'scale(1)', offset: 1 } 
+      ], { duration: 300, easing: 'ease-in-out' }); 
+    }); 
+  }); 
+ 
+  // Custom Color Picker Logic 
+  if (applyCustomColorsBtn) { 
+    applyCustomColorsBtn.addEventListener('click', () => { 
+      const color1 = customColor1Input.value; 
+      const color2 = customColor2Input.value; 
+      previewText.style.background = `linear-gradient(90deg, ${color1}, ${color2})`; 
+      previewText.style.color = '#ffffff'; // Assume branco para melhor contraste 
+      previewText.style.boxShadow = `0 18px 45px ${hexToRgba(color1, 0.25)}`; 
+      showToast('✨ Cores personalizadas aplicadas!', 1500); 
+ 
+      previewText.animate([ 
+          { transform: 'scale(1)', offset: 0 }, 
+          { transform: 'scale(1.05)', offset: 0.5 }, 
+          { transform: 'scale(1)', offset: 1 } 
+        ], { duration: 300, easing: 'ease-in-out' }); 
+    }); 
+  } 
+ 
+  if (copyCustomColorsBtn) { 
+    copyCustomColorsBtn.addEventListener('click', () => { 
+      const color1 = customColor1Input.value; 
+      const color2 = customColor2Input.value; 
+      const colorsToCopy = `Cor 1: ${color1}\nCor 2: ${color2}\nGradiente CSS: linear-gradient(90deg, ${color1}, ${color2})`; 
+      copyToClipboard(colorsToCopy, copyCustomColorsBtn); 
+    }); 
+  } 
+   
+  // Função auxiliar para conversão de cores 
+  window.hexToRgba = function(hex, alpha) { 
+    hex = hex.replace('#', ''); 
+    if (hex.length === 3) hex = hex.split('').map(h => h + h).join(''); 
+    const r = parseInt(hex.substring(0, 2), 16); 
+    const g = parseInt(hex.substring(2, 4), 16); 
+    const b = parseInt(hex.substring(4, 6), 16); 
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`; 
+  }; 
+   
+  // Inicializar preview 
+  previewText.style.background = `linear-gradient(90deg, var(--accent), var(--accent2))`; 
+  previewText.style.color = '#ffffff'; 
+  previewText.style.boxShadow = `0 18px 45px rgba(224, 186, 255, 0.25)`; 
+}); 
+ 
+/* ------------------ Bio Generator ------------------ */ 
+const bioTemplatesFeminino = [ 
+  "🌸 Sonhadora e apaixonada por lyrics. ✨ #Aylanic #Edits", 
+  "💫 Criando mundos com palavras e música. 💜 Siga-me para mais inspirações!", 
+  "💖 Meu coração bate no ritmo das minhas edits. 🎶 #LyricEditor", 
+  "🌷 Estrela em ascensão no universo das letras animadas. 🌟", 
+  "🎀 Aesthetic lover e crafter de sonhos. Sinta a magia! 🔮", 
+  "🌙 Pequenos detalhes, grandes emoções. É o meu toque Aylanic! ✍️", 
+  "🎵 Onde cada letra dança e cada som encanta. Bem-vinda ao meu mundo! 💖", 
+  "🌿 Crescendo e florescendo com cada nova criação. 🌼", 
+  "✨ Mais que edits, é arte em movimento. Junte-se à minha jornada! 💫", 
+  "🍓 Doce como um morango, criativa como a noite. 🌌", 
+]; 
+ 
+const bioTemplatesMasculino = [ 
+  "🎧 Ritmos e letras que inspiram. 🚀 #LyricsEdits", 
+  "💡 Criando narrativas com a força da música. ⚡️ #MotionGraphics", 
+  "💙 Foco e paixão em cada frame. 🎶 Desafie-se a criar!", 
+  "👑 O rei das animações de texto. Prepare-se para o próximo nível. 🌟", 
+  "⚙️ Engenheiro de letras, artista de movimentos. Veja meus tutoriais!", 
+  "🌌 Mergulhado na criatividade, emergindo com inspirações. ✨", 
+  "🔥 Onde a batida encontra a visão. Let's create! 🎬", 
+  "🌲 Fortalecendo a arte das letras animadas. Junte-se à comunidade. 💪", 
+  "🚀 Elevando o padrão das suas edits. Veja como eu faço! 📈", 
+  "🎮 Mestre dos pixels e do design de texto. Venha jogar comigo! 🕹️", 
+]; 
+ 
+let currentBioType = 'feminino'; 
+ 
+document.addEventListener('DOMContentLoaded', () => { 
+  const bioTabs = document.querySelectorAll('.bio-tab-btn'); 
+  const generatedBioEl = document.getElementById('generatedBio'); 
+  const generateBioBtn = document.getElementById('generateBioBtn'); 
+  const copyGeneratedBioBtn = document.getElementById('copyGeneratedBioBtn'); 
+ 
+  bioTabs.forEach(btn => { 
+    btn.addEventListener('click', () => { 
+      bioTabs.forEach(b => b.classList.remove('active')); 
+      btn.classList.add('active'); 
+      currentBioType = btn.getAttribute('data-bio-type'); 
+      generatedBioEl.value = 'Clique em "Gerar Bio" para uma frase fofa!'; 
+      showToast(`✨ Bios ${currentBioType === 'feminino' ? 'femininas' : 'masculinas'} ativadas!`, 1500); 
+    }); 
+  }); 
+ 
+  generateBioBtn.addEventListener('click', () => { 
+    const templates = currentBioType === 'feminino' ? bioTemplatesFeminino : bioTemplatesMasculino; 
+    const randomIndex = Math.floor(Math.random() * templates.length); 
+    generatedBioEl.value = templates[randomIndex]; 
+    generatedBioEl.focus(); 
+    generatedBioEl.select(); 
+    showToast('✨ Nova bio gerada!', 1500); 
+  }); 
+ 
+  copyGeneratedBioBtn.addEventListener('click', () => { 
+    copyToClipboard(generatedBioEl.value, copyGeneratedBioBtn); 
+  }); 
+}); 
+ 
+/* ------------------ Sistema de Votação Melhorado ------------------ */ 
+const channels = [ 
+  { id: 'lavis', label: "o, › ࣪ ˖ ᥣᥲ᥎is 𐙚˚", display: "Lavis", likes: 543, emoji: "💜" }, // Corrigido "laviv" para "Lavis" 
+  { id: 'john', label: "𝐽𝑜ℎ𝑛.", display: "John", likes: 409, emoji: "💙" }, 
+  { id: 'lipe', label: "◟ › L🄸𝗽e ˓ ♬  ࣪ ⊹", display: "Lipe", likes: 577, emoji: "🧡" }, 
+  { id: 'bellih', label: "﹟˖࣪ ᑲᧉl︪︩Ɩ!հ ᭡", display: "Bellih", likes: 601, emoji: "💖" }, 
+  { id: 'benny', label: "♫🎧 𝑩ΣNИY ⍣⌗", display: "Benny", likes: 201, emoji: "💚" }, 
+  { id: 'natan', label: "♪ ◟. 🄽ᥲtᥲᥒ ‹ '", display: "Natan", likes: 350, emoji: "🎤" }, 
+  { id: 'arthur', label: "∙ ♯ A̸𝗿𝐭h͟𝘂𝗿 ∙♬", display: "Arthur", likes: 480, emoji: "🖤" }, 
+  { id: 'adri', label: "αԃɾι.🪐", display: "Adri", likes: 510, emoji: "🪐" } 
+]; 
+ 
+const VOTES_KEY = 'aylanic_votes_2025'; 
+const USER_VOTES_KEY = 'aylanic_user_votes_2025'; 
+ 
+function initializeVoting() { 
+  // Carregar votos salvos 
+  try { 
+    const savedVotes = localStorage.getItem(VOTES_KEY); 
+    const savedUserVotes = localStorage.getItem(USER_VOTES_KEY); 
+     
+    if (savedVotes) { 
+      const votesData = JSON.parse(savedVotes); 
+      channels.forEach(channel => { 
+        if (votesData[channel.id] !== undefined) { 
+          channel.likes = Math.max(0, parseInt(votesData[channel.id]) || channel.likes); 
+        } 
+      }); 
+    } 
+     
+    if (savedUserVotes) { 
+      const userVotes = JSON.parse(savedUserVotes); 
+      Object.keys(userVotes).forEach(channelId => { 
+        if (userVotes[channelId]) { 
+          const channel = channels.find(c => c.id === channelId); 
+          if (channel) channel.voted = true; 
+        } 
+      }); 
+    } 
+  } catch (e) { 
+    console.warn('Erro ao carregar votos:', e); 
+  } 
+   
+  renderVoting(); 
+} 
+ 
+function saveVotingData() { 
+  try { 
+    const votesData = {}; 
+    channels.forEach(channel => { 
+      votesData[channel.id] = channel.likes; 
+    }); 
+    localStorage.setItem(VOTES_KEY, JSON.stringify(votesData)); 
+     
+    const userVotes = {}; 
+    channels.forEach(channel => { 
+      userVotes[channel.id] = channel.voted || false; 
+    }); 
+    localStorage.setItem(USER_VOTES_KEY, JSON.stringify(userVotes)); 
+  } catch (e) { 
+    console.warn('Erro ao salvar votos:', e); 
+  } 
+} 
+ 
+function renderVoting() { 
+  const voteListEl = document.getElementById('voteList'); 
+  if (!voteListEl) return; 
+   
+  // Sort channels for display based on likes (descending) 
+  const sortedChannels = [...channels].sort((a, b) => b.likes - a.likes); 
+ 
+  voteListEl.innerHTML = ''; 
+   
+  sortedChannels.forEach((channel, index) => { 
+    const hasVoted = channel.voted || localStorage.getItem(`${USER_VOTES_KEY}_${channel.id}`) === '1'; 
+    const isDisabled = hasVoted; 
+     
+    const row = document.createElement('div'); 
+    row.className = 'vote-row'; 
+    row.style.opacity = isDisabled ? '0.7' : '1'; 
+    row.style.pointerEvents = isDisabled ? 'none' : 'auto'; 
+     
+    row.innerHTML = ` 
+      <div style="display:flex;flex-direction:column;flex:1"> 
+        <div class="chan-label">${channel.emoji} ${channel.label}</div> 
+        <div class="chan-sub">👤 ${channel.display}</div> 
+      </div> 
+      <div style="display:flex;gap:8px;align-items:center"> 
+        <button class="vote-btn ${isDisabled ? 'disabled-voted' : ''}" data-id="${channel.id}" ${isDisabled ? 'disabled' : ''}> 
+          ${isDisabled ? '💕 Votado!' : '💖 Votar'} 
+        </button> 
+        <div class="likes" id="likes_${channel.id}" style="background:linear-gradient(90deg,var(--pink),transparent);background-clip:text;-webkit-background-clip:text;color:transparent;font-size:1.2rem"> 
+          ${channel.likes.toLocaleString()} 
+        </div> 
+      </div> 
+    `; 
+     
+    voteListEl.appendChild(row); 
+  }); 
+   
+  // Adicionar event listeners para botões de voto 
+  document.querySelectorAll('.vote-btn:not([disabled])').forEach(btn => { 
+    btn.addEventListener('click', handleVote); 
+  }); 
+ 
+  renderVotePodium(sortedChannels); 
+} 
+ 
+function renderVotePodium(sortedChannels) { 
+  const podiumEl = document.getElementById('votePodium'); 
+  if (!podiumEl) return; 
+ 
+  podiumEl.innerHTML = ''; 
+ 
+  const top3 = sortedChannels.slice(0, 3); 
+ 
+  top3.forEach((channel, index) => { 
+    const placeDiv = document.createElement('div'); 
+    placeDiv.className = 'rank-place'; 
+     
+    let medalEmoji = ''; 
+    if (index === 0) medalEmoji = '🥇'; 
+    else if (index === 1) medalEmoji = '🥈'; 
+    else if (index === 2) medalEmoji = '🥉'; 
+ 
+    placeDiv.innerHTML = ` 
+      <div class="rank-medal">${medalEmoji}</div> 
+      <div class="rank-name">${channel.display}</div> 
+      <div class="rank-score">${channel.likes.toLocaleString()} votos</div> 
+    `; 
+    podiumEl.appendChild(placeDiv); 
+  }); 
+} 
+ 
+function handleVote(event) { 
+  const button = event.currentTarget; 
+  const channelId = button.getAttribute('data-id'); 
+  const channel = channels.find(c => c.id === channelId); 
+   
+  if (!channel || channel.voted) { 
+    showToast('❌ Você já votou neste canal!', 2000, 'error'); 
+    return; 
+  } 
+   
+  // Animação de voto 
+  button.style.transform = 'scale(0.95)'; 
+  button.innerHTML = '💝 Votando...'; 
+   
+  setTimeout(() => { 
+    channel.likes += 1; 
+    channel.voted = true; 
+    button.disabled = true; 
+    button.innerHTML = '💕 Votado!'; 
+    button.style.background = 'linear-gradient(90deg, #d1d5db, #e5e7eb)'; 
+    button.style.transform = 'scale(1)'; 
+     
+    // Atualizar contador 
+    const likesEl = document.getElementById(`likes_${channelId}`); 
+    if (likesEl) { 
+      likesEl.textContent = channel.likes.toLocaleString(); 
+      likesEl.style.animation = 'none'; 
+      likesEl.style.animation = 'pulse 0.6s ease-in-out'; 
+    } 
+     
+    // Salvar dados 
+    saveVotingData(); 
+    renderVoting(); // Re-render para atualizar estados e pódio 
+     
+    // Feedback visual 
+    showToast(`🎉 Voto registrado para ${channel.display}!`, 2500); 
+     
+    // Animação de coração flutuante 
+    createFloatingHeart(button); 
+  }, 300); 
+} 
+ 
+// Animação de coração flutuante 
+function createFloatingHeart(element) { 
+  const heart = document.createElement('div'); 
+  heart.innerHTML = '💖'; 
+  heart.style.position = 'fixed'; 
+  const rect = element.getBoundingClientRect(); 
+  heart.style.left = (rect.left + rect.width / 2 - 10) + 'px'; 
+  heart.style.top = (rect.top + rect.height / 2 - 10) + 'px'; 
+  heart.style.fontSize = '20px'; 
+  heart.style.pointerEvents = 'none'; 
+  heart.style.zIndex = '10000'; 
+  heart.style.animation = 'floatUp 1s ease-out forwards'; 
+   
+  document.body.appendChild(heart); 
+   
+  setTimeout(() => { 
+    if (heart.parentNode) { 
+      heart.parentNode.removeChild(heart); 
+    } 
+  }, 1000); 
+} 
+ 
+// CSS para animações (injetado dinamicamente) 
+const style = document.createElement('style'); 
+style.textContent = ` 
+  @keyframes pulse { 
+    0% { transform: scale(1); } 
+    50% { transform: scale(1.2); } 
+    100% { transform: scale(1); } 
+  } 
+  @keyframes floatUp { 
+    0% {  
+      transform: translateY(0) scale(1);  
+      opacity: 1; 
+    } 
+    100% {  
+      transform: translateY(-100px) scale(1.5);  
+      opacity: 0; 
+    } 
+  } 
+  .vote-btn:disabled { 
+    cursor: not-allowed !important; 
+    transform: none !important; 
+  } 
+`; 
+document.head.appendChild(style); 
+ 
+initializeVoting(); 
+ 
+/* ------------------ Jogo dos Corações Melhorado ------------------ */ 
+let gameState = { 
+  isActive: false, 
+  score: 0, 
+  highScore: 0, 
+  gameInterval: null, 
+  hearts: [], 
+  gameTimer: null 
+}; 
+ 
+const gameElements = { 
+  stage: null, 
+  scoreEl: null, 
+  messageEl: null, 
+  startBtn: null, 
+  stopBtn: null, 
+  playAgainBtn: null, 
+  rankingEl: null 
+}; 
+ 
+const HEARTS_GAME_KEY = 'aylanic_hearts_game_2025'; 
+const BEST_SCORE_KEY = 'aylanic_best_hearts_score'; 
+ 
+function initializeGame() { 
+  // Elementos do DOM 
+  gameElements.stage = document.getElementById('heartsStage'); 
+  gameElements.scoreEl = document.getElementById('heartsScore'); 
+  gameElements.messageEl = document.getElementById('heartsMessage'); 
+  gameElements.startBtn = document.getElementById('startHeartsBtn'); 
+  gameElements.stopBtn = document.getElementById('stopHeartsBtn'); 
+  gameElements.playAgainBtn = document.getElementById('playAgainBtn'); 
+  gameElements.rankingEl = document.getElementById('rankingList'); 
+   
+  if (!gameElements.stage) return; 
+   
+  // Carregar melhor pontuação 
+  try { 
+    const savedBest = localStorage.getItem(BEST_SCORE_KEY); 
+    if (savedBest) { 
+      gameState.highScore = parseInt(savedBest) || 0; 
+    } 
+     
+    const savedGames = localStorage.getItem(HEARTS_GAME_KEY); 
+    if (savedGames) { 
+      const games = JSON.parse(savedGames); 
+      renderRanking(games); 
+    } else { 
+      renderRanking([]); 
+    } 
+  } catch (e) { 
+    console.warn('Erro ao carregar dados do jogo:', e); 
+    renderRanking([]); 
+  } 
+   
+  // Event listeners 
+  gameElements.startBtn.addEventListener('click', startGame); 
+  gameElements.stopBtn.addEventListener('click', stopGame); 
+  gameElements.playAgainBtn.addEventListener('click', restartGame); 
+   
+  // Inicializar UI 
+  updateGameUI(); 
+} 
+ 
+function updateGameUI() { 
+  gameElements.startBtn.disabled = gameState.isActive; 
+  gameElements.startBtn.style.opacity = gameState.isActive ? '0.5' : '1'; 
+  gameElements.stopBtn.disabled = !gameState.isActive; 
+  gameElements.stopBtn.style.opacity = gameState.isActive ? '1' : '0.5'; 
+  gameElements.playAgainBtn.style.opacity = gameState.isActive ? '0.5' : '1'; 
+   
+  if (gameElements.scoreEl) { 
+    gameElements.scoreEl.textContent = gameState.score; 
+  } 
+} 
+ 
+function startGame() { 
+  if (gameState.isActive) return; 
+   
+  gameState.isActive = true; 
+  gameState.score = 0; 
+   
+  // Reset stage 
+  if (gameElements.stage) { 
+    gameElements.stage.style.display = 'block'; 
+    gameElements.stage.innerHTML = ''; 
+  } 
+   
+  if (gameElements.messageEl) { 
+    gameElements.messageEl.textContent = '🎮 Jogo iniciado! Clique nos corações!'; 
+  } 
+   
+  updateGameUI(); 
+   
+  // Spawn hearts interval 
+  gameState.gameInterval = setInterval(spawnHeart, 1000); 
+   
+  // Timer de 25 segundos 
+  gameState.gameTimer = setTimeout(() => { 
+    endGame(true); 
+  }, 25000); 
+   
+  // Animação de início 
+  gameElements.startBtn.innerHTML = '⏳ Jogando...'; 
+  gameElements.startBtn.style.background = 'linear-gradient(90deg, #10b981, #34d399)'; 
+   
+  showToast('🎉 Jogo iniciado! Você tem 25 segundos!', 2000); 
+   
+  // Som de início (se suportado) 
+  playGameSound('start'); 
+} 
+ 
+function stopGame() { 
+  if (!gameState.isActive) return; 
+  endGame(false); 
+} 
+ 
+function restartGame() { 
+  if (gameState.isActive) { 
+    endGame(false); 
+  } 
+  setTimeout(startGame, 500); 
+} 
+ 
+function endGame(autoEnd = false) { 
+  // Limpa todos os corações que ainda estão no stage 
+  gameState.hearts.forEach(heartData => { 
+    clearInterval(heartData.fallInterval); 
+    if (heartData.element.parentNode) { 
+      heartData.element.parentNode.removeChild(heartData.element); 
+    } 
+  }); 
+  gameState.hearts = []; // Limpa o array de corações 
+ 
+  gameState.isActive = false; 
+   
+  clearInterval(gameState.gameInterval); 
+  clearTimeout(gameState.gameTimer); 
+  gameState.gameInterval = null; 
+  gameState.gameTimer = null; 
+   
+  // Salvar pontuação 
+  saveGameScore(gameState.score); 
+   
+  if (gameElements.messageEl) { 
+    const message = autoEnd  
+      ? `🎊 Fim de jogo! Pontuação final: ${gameState.score} 💖`  
+      : `⏹️ Jogo pausado. Pontuação: ${gameState.score} 💖`; 
+    gameElements.messageEl.textContent = message; 
+  } 
+   
+  if (gameElements.stage) { 
+    gameElements.stage.style.display = 'none'; 
+  } 
+   
+  updateGameUI(); 
+   
+  // Reset botão start 
+  if (gameElements.startBtn) { 
+    gameElements.startBtn.innerHTML = '▶️ Iniciar jogo'; 
+    gameElements.startBtn.style.background = ''; 
+  } 
+   
+  // Verificar recorde 
+  if (gameState.score > gameState.highScore) { 
+    gameState.highScore = gameState.score; 
+    localStorage.setItem(BEST_SCORE_KEY, gameState.highScore); 
+    showToast(`🏆 NOVO RECORDE! ${gameState.score} pontos! 🎉`, 3000); 
+  } 
+   
+  renderRanking(); 
+   
+  // Som de fim 
+  playGameSound('end'); 
+} 
+ 
+function spawnHeart() { 
+  if (!gameState.isActive || !gameElements.stage) return; 
+   
+  const heart = document.createElement('div'); 
+  heart.className = 'heart'; 
+  heart.innerHTML = getRandomHeartEmoji(); 
+   
+  // Posição aleatória 
+  const stageWidth = gameElements.stage.clientWidth || 300; 
+  // Corações não nascem muito perto da borda 
+  const x = Math.random() * (stageWidth - 80) + 40;  
+  const y = -50; // Nasce um pouco mais acima 
+   
+  heart.style.left = x + 'px'; 
+  heart.style.top = y + 'px'; 
+   
+  gameElements.stage.appendChild(heart); 
+   
+  const heartData = { element: heart, fallInterval: null, removeTimeout: null }; 
+  gameState.hearts.push(heartData); 
+   
+  // Animação de queda mais natural e com velocidade variável 
+  let currentY = y; 
+  const fallSpeed = 2 + Math.random() * 3; // Velocidade entre 2 e 5 
+   
+  heartData.fallInterval = setInterval(() => { 
+    currentY += fallSpeed; 
+    heart.style.top = currentY + 'px'; 
+     
+    if (currentY > (gameElements.stage.clientHeight + 50)) { // 50px a mais para sumir totalmente 
+      clearInterval(heartData.fallInterval); 
+      if (heart.parentNode) { 
+        heart.parentNode.removeChild(heart); 
+      } 
+      // Remove do array gameState.hearts 
+      const index = gameState.hearts.indexOf(heartData); 
+      if (index > -1) { 
+        gameState.hearts.splice(index, 1); 
+      } 
+    } 
+  }, 20); // Atualiza a cada 20ms 
+ 
+  // Click handler 
+  heart.addEventListener('click', (e) => { 
+    e.stopPropagation(); 
+    if (!gameState.isActive) return; 
+     
+    // Remove coração imediatamente 
+    clearInterval(heartData.fallInterval); 
+    clearTimeout(heartData.removeTimeout); 
+    if (heart.parentNode) { 
+      heart.parentNode.removeChild(heart); 
+    } 
+      
+    // Encontrar e remover do array 
+    const index = gameState.hearts.indexOf(heartData); 
+    if (index > -1) { 
+      gameState.hearts.splice(index, 1); 
+    } 
+      
+    // Incrementar pontuação 
+    gameState.score++; 
+    if (gameElements.scoreEl) { 
+      gameElements.scoreEl.textContent = gameState.score; 
+      gameElements.scoreEl.style.color = 'var(--pink)'; 
+      gameElements.scoreEl.style.transform = 'scale(1.3)'; 
+      setTimeout(() => { 
+        gameElements.scoreEl.style.transform = 'scale(1)'; 
+        gameElements.scoreEl.style.color = ''; 
+      }, 200); 
+    } 
+      
+    // Efeito visual de acerto 
+    createScorePopup(heart, '+' + 1); 
+      
+    // Feedback sonoro 
+    playGameSound('hit'); 
+      
+    // Toast de confirmação 
+    showToast(`💖 +1 ponto! Total: ${gameState.score}`, 800); 
+      
+    // Aumentar dificuldade (spawn mais rápido) 
+    if (gameState.score % 5 === 0 && gameState.gameInterval) { // Acelera a cada 5 pontos 
+      clearInterval(gameState.gameInterval); 
+      let newIntervalTime = Math.max(200, 1000 - (gameState.score * 15)); // Mínimo de 200ms 
+      gameState.gameInterval = setInterval(spawnHeart, newIntervalTime); 
+    } 
+  }); 
+} 
+ 
+function getRandomHeartEmoji() { 
+  const hearts = ['💖', '💕', '💗', '💓', '💞', '💝', '✨', '🌸', '⭐', '💜', '💙', '💚', '💛', '🧡', '❤️']; 
+  return hearts[Math.floor(Math.random() * hearts.length)]; 
+} 
+ 
+function createScorePopup(heartElement, points) { 
+  const popup = document.createElement('div'); 
+  popup.textContent = points; 
+  popup.style.position = 'absolute'; 
+  // Posição ajustada para o centro do coração 
+  const heartRect = heartElement.getBoundingClientRect(); 
+  const stageRect = gameElements.stage.getBoundingClientRect(); 
+  popup.style.left = (heartRect.left - stageRect.left + heartRect.width / 2) + 'px'; 
+  popup.style.top = (heartRect.top - stageRect.top + heartRect.height / 2) + 'px'; 
+  popup.style.color = 'var(--pink)'; 
+  popup.style.fontWeight = '900'; 
+  popup.style.fontSize = '18px'; 
+  popup.style.pointerEvents = 'none'; 
+  popup.style.zIndex = '10'; 
+  popup.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)'; 
+   
+  if (gameElements.stage) { 
+    gameElements.stage.appendChild(popup); 
+  } 
+   
+  // Animação de popup 
+  popup.animate([ 
+    { transform: 'translateY(0px) scale(0.5)', opacity: 0 }, 
+    { transform: 'translateY(-40px) scale(1.2)', opacity: 1, offset: 0.3 }, 
+    { transform: 'translateY(-80px) scale(1)', opacity: 0 } 
+  ], { 
+    duration: 800, 
+    easing: 'ease-out' 
+  }).onfinish = () => { 
+    if (popup.parentNode) { 
+      popup.parentNode.removeChild(popup); 
+    } 
+  }; 
+} 
+ 
+function saveGameScore(score) { 
+  try { 
+    const now = new Date(); 
+    const gameRecord = { 
+      score: score, 
+      date: now.toLocaleDateString('pt-BR'), 
+      time: now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }), 
+      timestamp: now.getTime() 
+    }; 
+     
+    let savedGames = localStorage.getItem(HEARTS_GAME_KEY); 
+    let games = savedGames ? JSON.parse(savedGames) : []; 
+     
+    games.push(gameRecord); 
+     
+    // Manter apenas os 50 melhores jogos 
+    games = games 
+      .sort((a, b) => b.score - a.score) 
+      .slice(0, 50); 
+     
+    localStorage.setItem(HEARTS_GAME_KEY, JSON.stringify(games)); 
+     
+    // Atualizar melhor pontuação 
+    if (score > gameState.highScore) { 
+      gameState.highScore = score; 
+      localStorage.setItem(BEST_SCORE_KEY, score); 
+    } 
+  } catch (e) { 
+    console.error('Erro ao salvar pontuação:', e); 
+  } 
+} 
+ 
+function renderRanking(games = []) { 
+  if (!gameElements.rankingEl) return; 
+   
+  gameElements.rankingEl.innerHTML = ''; 
+   
+  if (!games.length) { 
+    gameElements.rankingEl.innerHTML = ` 
+      <div style="text-align:center;padding:20px;color:#9ca3af"> 
+        <div style="font-size:2rem;margin-bottom:8px">🎮</div> 
+        <div style="font-weight:600;margin-bottom:4px">Nenhum jogo ainda!</div> 
+        <div style="font-size:0.9rem">Clique em "Iniciar jogo" para começar</div> 
+      </div> 
+    `; 
+    return; 
+  } 
+   
+  // Mostrar top 10 
+  const topGames = games.slice(0, 10); 
+   
+  topGames.forEach((game, index) => { 
+    const isPersonalBest = game.score === gameState.highScore && game.score > 0 && index === 0; 
+    const row = document.createElement('div'); 
+    row.className = 'rank-row'; 
+    row.style.background = isPersonalBest ? 'linear-gradient(90deg, rgba(255,133,192,0.1), rgba(224,186,255,0.1))' : ''; 
+    row.style.borderLeft = isPersonalBest ? '4px solid var(--pink)' : 'none'; 
+    row.style.marginLeft = isPersonalBest ? '4px' : '0'; 
+     
+    row.innerHTML = ` 
+      <div style="display:flex;align-items:center;gap:8px;flex:1"> 
+        <span style="font-size:1.2rem;font-weight:900;color:${index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : index === 2 ? '#CD7F32' : 'var(--text-dark)'}"> 
+          ${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}º`} 
+        </span> 
+        <span style="font-weight:600">${game.score} pontos</span> 
+      </div> 
+      <div style="color:var(--text-dark);font-size:0.85rem"> 
+        ${game.date} às ${game.time} 
+      </div> 
+    `; 
+     
+    gameElements.rankingEl.appendChild(row); 
+  }); 
+   
+  // Mostrar melhor pontuação pessoal 
+  if (gameState.highScore > 0) { 
+    const bestRow = document.createElement('div'); 
+    bestRow.style.cssText = ` 
+      margin-top:12px; padding:12px; border-radius:10px;  
+      background:linear-gradient(90deg, rgba(255,133,192,0.1), rgba(224,186,255,0.1)); 
+      border:2px solid var(--pink); text-align:center; 
+      font-weight:700; color:var(--pink); 
+    `; 
+    bestRow.innerHTML = ` 
+      <div style="font-size:1.1rem;margin-bottom:4px">🏆 SEU MELHOR RECORDE</div> 
+      <div style="font-size:1.8rem;font-weight:900;color:var(--pink)">${gameState.highScore} pontos</div> 
+      <div style="font-size:0.9rem;color:var(--accent2);margin-top:4px">💖 Você é incrível, Ayla!</div> 
+    `; 
+    gameElements.rankingEl.appendChild(bestRow); 
+  } 
+} 
+ 
+// Sons do jogo (usando Web Audio API) 
+function playGameSound(type) { 
+  // Check for user gesture before creating AudioContext 
+  if (!window.userInteracted) { 
+    console.log("User has not interacted yet, skipping sound."); 
+    return;  
+  } 
+ 
+  if (!window.AudioContext) return; 
+   
+  try { 
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)(); 
+    const oscillator = audioContext.createOscillator(); 
+    const gainNode = audioContext.createGain(); 
+     
+    oscillator.connect(gainNode); 
+    gainNode.connect(audioContext.destination); 
+     
+    if (type === 'start') { 
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime); 
+      oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.3); 
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); 
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3); 
+    } else if (type === 'hit') { 
+      oscillator.frequency.setValueAtTime(1000, audioContext.currentTime); 
+      oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.05); 
+      gainNode.gain.setValueAtTime(0.15, audioContext.currentTime); 
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15); 
+    } else if (type === 'end') { 
+      oscillator.frequency.setValueAtTime(400, audioContext.currentTime); 
+      oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.5); 
+      gainNode.gain.setValueAtTime(0.08, audioContext.currentTime); 
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5); 
+    } 
+     
+    oscillator.type = 'sine'; 
+    oscillator.start(audioContext.currentTime); 
+    oscillator.stop(audioContext.currentTime + (type === 'end' ? 0.5 : 0.2)); 
+  } catch (e) { 
+    console.warn('Erro ao reproduzir som:', e); 
+  } 
+} 
+ 
+// Inicializar jogo quando DOM estiver pronto 
+document.addEventListener('DOMContentLoaded', initializeGame); 
+ 
+// Cleanup quando sair da página 
+window.addEventListener('beforeunload', () => { 
+  if (gameState.isActive) { 
+    endGame(false); 
+  } 
+}); 
+ 
+// Prevenir zoom em dispositivos móveis durante o jogo 
+document.addEventListener('touchstart', (e) => { 
+  if (gameState.isActive && e.touches.length > 1) { 
+    e.preventDefault(); 
+  } 
+}, { passive: false }); 
+ 
+let touchStart = null; 
+document.addEventListener('touchstart', (e) => { 
+  if (gameState.isActive) { 
+    touchStart = e.touches[0].clientX; 
+  } 
+}, { passive: true }); 
+ 
+document.addEventListener('touchmove', (e) => { 
+  if (gameState.isActive && touchStart !== null) { 
+    const currentX = e.touches[0].clientX; 
+    if (Math.abs(currentX - touchStart) > 10) { 
+      e.preventDefault(); 
+    } 
+  } 
+}, { passive: false }); 
+ 
+// CSS adicional para o jogo 
+const gameStyle = document.createElement('style'); 
+gameStyle.textContent = ` 
+  .hearts-stage { 
+    background: linear-gradient(180deg,  
+      rgba(255,255,255,0.95) 0%,  
+      rgba(252,245,255,0.92) 50%,  
+      rgba(248,250,255,0.88) 100% 
+    ); 
+    position: relative; 
+    overflow: hidden; 
+  } 
+  .hearts-stage::before { 
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background:  
+      radial-gradient(circle at 20% 30%, rgba(255,133,192,0.18) 0%, transparent 50%), 
+      radial-gradient(circle at 80% 70%, rgba(224,186,255,0.15) 0%, transparent 50%); 
+    pointer-events: none; 
+    z-index: 1; 
+  } 
+  .heart { 
+    z-index: 2; 
+    transition: all 0.2s ease; 
+    box-shadow: 0 4px 15px rgba(255,133,192,0.35); 
+  } 
+  .heart:hover { 
+    transform: scale(1.25) rotate(10deg) !important; 
+    box-shadow: 0 8px 25px rgba(255,133,192,0.55); 
+  } 
+  #heartsScore { 
+    transition: all 0.2s ease; 
+  } 
+  @keyframes heartBeat { 
+    0%, 100% { transform: scale(1); } 
+    50% { transform: scale(1.1); } 
+  } 
+  .heart.clicked { 
+    animation: heartBeat 0.3s ease-in-out; 
+  } 
+`; 
+document.head.appendChild(gameStyle); 
+ 
+/* ------------------ Inicialização Final ------------------ */ 
+// Garantir que tudo seja inicializado corretamente 
+window.userInteracted = false; // Flag para rastrear interação do usuário 
+ 
+document.addEventListener('DOMContentLoaded', function() { 
+  // Pequena animação de carregamento 
+  document.body.style.opacity = '0'; 
+  document.body.style.transition = 'opacity 0.5s ease-in'; 
+  setTimeout(() => { 
+    document.body.style.opacity = '1'; 
+  }, 100); 
+   
+  // Toast de boas-vindas 
+  setTimeout(() => { 
+    showToast('💜 Bem-vinda ao Aylanic Tutorials! Tudo funcionando perfeitamente! ✨', 3000); 
+  }, 800); 
+   
+  console.log('🌸 Aylanic Tutorials carregado com sucesso! Feito com 💖 por Ayla'); 
+ 
+  // Marca que o usuário interagiu após o primeiro clique em qualquer lugar 
+  document.body.addEventListener('click', () => { 
+    window.userInteracted = true; 
+  }, { once: true }); 
+}); 
+</script> 
+</body> 
+</html>
